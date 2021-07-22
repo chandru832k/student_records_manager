@@ -11,37 +11,37 @@ except ImportError:
 
 try:
     import ttk
-    py3 = False
+    py3=False
 except ImportError:
     import tkinter.ttk as ttk
-    py3 = True
+    py3=True
 
 import prostudent_support
 
 def vp_start_gui():
     
     global val, w, root
-    root = tk.Tk()
+    root=tk.Tk()
     prostudent_support.set_Tk_var()
-    top = studentdata (root)
+    top=studentdata (root)
     prostudent_support.init(root, top)
     root.mainloop()
 
-w = None
-def create_studentdata(rt, *args, **kwargs):
+w=None
+def create_studentdata(rt,*args,**kwargs):
     
     global w, w_win, root
-    root = rt
-    w = tk.Toplevel (root)
+    root=rt
+    w=tk.Toplevel (root)
     prostudent_support.set_Tk_var()
-    top = studentdata (w)
+    top=studentdata (w)
     prostudent_support.init(w, top, *args, **kwargs)
     return (w, top)
 
 def destroy_studentdata():
     global w
     w.destroy()
-    w = None
+    w=None
 
 class studentdata:
     def modify_student(self):
@@ -90,7 +90,6 @@ class studentdata:
             batch=self.batch
             year=self.txtage.get()
             cursor=self.con.cursor()
-            #print(name,regno,cgpa,batch,age)
             print(year)
             if(float(cgpa)>10):
                 messagebox.showerror('error','CGPA cannot be greater than 10')
@@ -99,8 +98,7 @@ class studentdata:
             if(int(year)>4):
             	messagebox.showerror('error','Year cannot be greater than 4')
             	return
-            #print(regno)
-            #val=("rishi","2018503056","8.0","MO","1")
+            
             val=(name,regno,cgpa,batch,year)
             cursor.execute(query,val)
             self.con.commit()
@@ -123,12 +121,7 @@ class studentdata:
         except Exception:
             messagebox.showerror('error','do table exist')
 
-    #def display(self):
-    	#cursor=self.con.cursor()
-        #cursor.execute("select * from studentinfo;")
-        #print("Name\t\t\t\t    regno\t\tCgpa    Batch   year")
-        #for i in cursor:
-            #print("%-20s %10s      %3s     %3s    %2d"%(i[0],i[1], i[2], i[3], i[4]))
+  
 
     def __init__ (self,top=None):
         try:
@@ -138,12 +131,12 @@ class studentdata:
             messagebox.showerror('error','cannot connect')
 	
 
-        _bgcolor = '#d9d9d9'  # X11 color: 'gray85'
-        _fgcolor = '#000000'  # X11 color: 'black'
-        _compcolor = '#d9d9d9' # X11 color: 'gray85'
-        _ana1color = '#d9d9d9' # X11 color: 'gray85'
-        _ana2color = '#ececec' # Closest X11 color: 'gray92'
-        font9 = "-family {Stencil} -size 18 -weight bold"
+        _bgcolor='#d9d9d9'  # X11 color: 'gray85'
+        _fgcolor='#000000'  # X11 color: 'black'
+        _compcolor='#d9d9d9' # X11 color: 'gray85'
+        _ana1color='#d9d9d9' # X11 color: 'gray85'
+        _ana2color='#ececec' # Closest X11 color: 'gray92'
+        font9="-family {Stencil} -size 18 -weight bold"
 
         top.geometry("600x646+606+107")
         top.minsize(116, 1)
@@ -156,7 +149,7 @@ class studentdata:
         top.configure(highlightcolor="#000000")
         self.var=IntVar()
 
-        self.Frame1 = tk.Frame(top)
+        self.Frame1=tk.Frame(top)
         self.Frame1.place(relx=0.083, rely=0.093, relheight=0.395
                 , relwidth=0.825)
         self.Frame1.configure(relief='groove')
@@ -179,21 +172,21 @@ class studentdata:
         self.Label2.configure(foreground="#3c17e8")
         self.Label2.configure(text='''Reg.no''')
 
-        self.Label3 = tk.Label(self.Frame1)
+        self.Label3=tk.Label(self.Frame1)
         self.Label3.place(relx=0.147, rely=0.431, height=21, width=42)
         self.Label3.configure(background="#d9d9d9")
         self.Label3.configure(disabledforeground="#a3a3a3")
         self.Label3.configure(foreground="#3c17e8")
         self.Label3.configure(text='''CGPA''')
 
-        self.Label4 = tk.Label(self.Frame1)
+        self.Label4=tk.Label(self.Frame1)
         self.Label4.place(relx=0.147, rely=0.588, height=21, width=42)
         self.Label4.configure(background="#d9d9d9")
         self.Label4.configure(disabledforeground="#a3a3a3")
         self.Label4.configure(foreground="#3c17e8")
         self.Label4.configure(text='''Batch''')
 
-        self.Label5 = tk.Label(self.Frame1)
+        self.Label5=tk.Label(self.Frame1)
         self.Label5.place(relx=0.147, rely=0.745, height=21, width=42)
         self.Label5.configure(background="#d9d9d9")
         self.Label5.configure(disabledforeground="#a3a3a3")
@@ -201,7 +194,7 @@ class studentdata:
         self.Label5.configure(highlightcolor="#000000")
         self.Label5.configure(text='''Year''')
 
-        self.txtname = tk.Text(self.Frame1)
+        self.txtname=tk.Text(self.Frame1)
         self.txtname.place(relx=0.345, rely=0.118, relheight=0.094
                 , relwidth=0.602)
         self.txtname.configure(background="white")
@@ -214,7 +207,7 @@ class studentdata:
         self.txtname.configure(selectforeground="black")
         self.txtname.configure(wrap="word")
 
-        self.txtreg = tk.Text(self.Frame1)
+        self.txtreg=tk.Text(self.Frame1)
         self.txtreg.place(relx=0.345, rely=0.275, relheight=0.094
                 , relwidth=0.602)
         self.txtreg.configure(background="white")
@@ -227,7 +220,7 @@ class studentdata:
         self.txtreg.configure(selectforeground="black")
         self.txtreg.configure(wrap="word")
 
-        self.txtcgpa = tk.Text(self.Frame1)
+        self.txtcgpa=tk.Text(self.Frame1)
         self.txtcgpa.place(relx=0.345, rely=0.431, relheight=0.094
                 , relwidth=0.602)
         self.txtcgpa.configure(background="white")
@@ -240,7 +233,7 @@ class studentdata:
         self.txtcgpa.configure(selectforeground="black")
         self.txtcgpa.configure(wrap="word")
 
-        self.rdmo = tk.Radiobutton(self.Frame1)
+        self.rdmo=tk.Radiobutton(self.Frame1)
         self.rdmo.place(relx=0.345, rely=0.588, relheight=0.098, relwidth=0.097)
         self.rdmo.configure(activebackground="#ececec")
         self.rdmo.configure(activeforeground="#000000")
@@ -254,7 +247,7 @@ class studentdata:
         self.rdmo.configure(variable=prostudent_support.selectedButton)
         self.rdmo.configure(variable=self.var,value=1,command=self.moselected)
 
-        self.rdmn = tk.Radiobutton(self.Frame1)
+        self.rdmn=tk.Radiobutton(self.Frame1)
         self.rdmn.place(relx=0.642, rely=0.588, relheight=0.098, relwidth=0.097)
         self.rdmn.configure(activebackground="#ececec")
         self.rdmn.configure(activeforeground="#000000")
@@ -269,7 +262,7 @@ class studentdata:
         self.rdmn.configure(variable=self.var,value=2,command=self.mnselected)
 
 
-        self.txtage = tk.Spinbox(self.Frame1, from_=1.0, to=100.0)
+        self.txtage=tk.Spinbox(self.Frame1, from_=1.0, to=100.0)
         self.txtage.place(relx=0.37, rely=0.745, relheight=0.075, relwidth=0.21)
         self.txtage.configure(activebackground="#f9f9f9")
         self.txtage.configure(background="white")
@@ -284,7 +277,7 @@ class studentdata:
         self.txtage.configure(selectforeground="black")
         self.txtage.configure(textvariable=prostudent_support.spinbox)
 
-        self.Label6 = tk.Label(top)
+        self.Label6=tk.Label(top)
         self.Label6.place(relx=0.0, rely=0.015, height=40, width=594)
         self.Label6.configure(background="#d9d9d9")
         self.Label6.configure(borderwidth="4")
@@ -293,10 +286,10 @@ class studentdata:
         self.Label6.configure(foreground="#000000")
         self.Label6.configure(text='''Department of Computer Technology''')
 
-        self.menubar = tk.Menu(top,font="TkMenuFont",bg=_bgcolor,fg=_fgcolor)
-        top.configure(menu = self.menubar)
+        self.menubar=tk.Menu(top,font="TkMenuFont",bg=_bgcolor,fg=_fgcolor)
+        top.configure(menu=self.menubar)
 
-        self.btnshow = tk.Button(top)
+        self.btnshow=tk.Button(top)
         self.btnshow.place(relx=0.1, rely=0.542, height=24, width=39)
         self.btnshow.configure(activebackground="#ececec")
         self.btnshow.configure(activeforeground="#000000")
@@ -308,7 +301,7 @@ class studentdata:
         self.btnshow.configure(pady="0")
         self.btnshow.configure(command=self.show_details,text='''show''')
 
-        self.btnadd = tk.Button(top)
+        self.btnadd=tk.Button(top)
         self.btnadd.place(relx=0.833, rely=0.542, height=24, width=43)
         self.btnadd.configure(activebackground="#ececec")
         self.btnadd.configure(activeforeground="#000000")
@@ -320,7 +313,7 @@ class studentdata:
         self.btnadd.configure(pady="0")
         self.btnadd.configure(command=self.add_student,text='''Add''')
 
-        self.btnmodify = tk.Button(top)
+        self.btnmodify=tk.Button(top)
         self.btnmodify.place(relx=0.833, rely=0.681, height=24, width=49)
         self.btnmodify.configure(activebackground="#ececec")
         self.btnmodify.configure(activeforeground="#000000")
@@ -332,7 +325,7 @@ class studentdata:
         self.btnmodify.configure(pady="0")
         self.btnmodify.configure(command=self.modify_student,text='''Modify''')
 
-        self.btndelete = tk.Button(top)
+        self.btndelete=tk.Button(top)
         self.btndelete.place(relx=0.833, rely=0.851, height=24, width=47)
         self.btndelete.configure(activebackground="#ececec")
         self.btndelete.configure(activeforeground="#000000")
@@ -344,7 +337,7 @@ class studentdata:
         self.btndelete.configure(pady="0")
         self.btndelete.configure(command=self.delete_student,text='''delete''')
 
-        self.liststudent = tk.Listbox(top)
+        self.liststudent=tk.Listbox(top)
         self.liststudent.place(relx=0.208, rely=0.534, relheight=0.375
                 , relwidth=0.575)
         self.liststudent.configure(background="white")
